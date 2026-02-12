@@ -1,8 +1,10 @@
-**English | [简体中文](README-zh.md)**
+**[English](README-en.md) | 简体中文**
 
-# Anki Note Linker
+# roshad 更动
+260212 增加ctrl+左键 点击链接，以阅读模式打开卡片的功能。
+# Anki 笔记链接器
 
-[View on AnkiWeb](https://ankiweb.net/shared/info/1077002392)
+[在 AnkiWeb 中查看](https://ankiweb.net/shared/info/1077002392)
 
 ![show0.jpg](show0.jpg)
 
@@ -10,107 +12,106 @@
 
 ![show.gif](show.gif)
 
-You can easily connect your Anki notes together by this add-on, forming a web of interconnected information. 
-By establishing links between relevant notes, you can create a comprehensive and organized knowledge base that reflects the relationships between various concepts, ideas, and topics.
+您可以通过这个插件轻松地将您的Anki笔记连接在一起，形成一个相互连接的信息网络。
+通过在相关笔记之间建立链接，您可以创建一个全面而有组织的知识库，反映各种概念，想法和主题之间的关系。
 
-## Announcement 📢
-Due to limited personal capacity, I am unable to continuously develop new features for this add-on. Future updates will primarily focus on bug fixes. If anyone is interested in contributing new features, feel free to submit a pull request or independently listed on Anki add-on market after development.
+## 公告 📢
+由于个人精力有限，我无法持续为这个插件开发新功能。未来的更新将主要集中在修复bug上。如果有人对基于此开发新功能感兴趣，欢迎提交合并请求，或开发后独立上架到Anki插件市场。
 
-## Link Format
+## 链接格式
 
-`[Link Title|nidxxxxxxxxxxxxx]`
+`[链接标题|nidxxxxxxxxxxxxx]`
 
-The link title is the content displayed in the card. If the title contains`[`, it needs to be escaped with`\[`
+链接标题是在卡片中显示的内容。如果标题包含`[`，则需要使用`\[`进行转义
 
-`x` is the ID of the note, consisting of 13 digits
+`x`是笔记的ID，由13位数字组成
 
-You can customize the style of the links by using the CSS selector: `.noteLink`
+您可以使用CSS选择器`.noteLink`来自定义链接的样式
 
-## Usage
+## 使用方法
 
-### In the editor:
+### 在编辑器中:
 
-#### Copy note ID
+#### 复制笔记ID
 
-Copy the ID of the current note in the editor by using the right-click menu or pressing `Alt+Shift+C`
+使用右键菜单或按`Alt+Shift+C`复制编辑器中当前笔记的ID
 
-#### Copy note link
+#### 复制笔记链接
 
-Copy the link of the current note in the editor by using the right-click menu or pressing `Alt+Shift+L`
+使用右键菜单或按`Alt+Shift+L`复制编辑器中当前笔记的链接
 
-#### Insert link with copied note ID
+#### 插入带有已复制的笔记ID的链接
 
-Generate a link from the note ID in the clipboard and the currently selected text by either using the right-click menu or pressing `Alt+Shift+V`
+使用右键菜单或按`Alt+Shift+V`从剪贴板中的笔记ID和当前选定的文本生成链接
 
-#### Insert new link
+#### 插入新链接（用于添加笔记）
 
-Generate a new link from the currently selected text by either using the right-click menu or pressing `Alt+Shift+N`
+通过使用右键单击菜单或按下`Alt+Shift+N`从当前选定的文本生成新链接
 
-Double-clicking the generated link text allows adding a corresponding new note
+双击生成的链接文本可以添加相应的新笔记
 
-#### Insert link template
+#### 插入链接模板
 
-Generate a link template from the currently selected text by either using the right-click menu or pressing `Alt+Shift+T`
+使用右键单击菜单或按`Alt+Shift+T`从当前选定的文本生成链接模板
 
-The generated link template looks like this: `[selected text|nid]`, you need to manually complete it
+生成的链接模板看起来是这样：`[选定的文本|nid]`，您需要手动补充笔记ID来完成它
 
-_Note: If no text is selected, using the above actions will generate a link without a title_
+_提示: 若没有选中文本，使用上述操作将生成一个没有标题的链接_
 
-#### Open current note in new window
+#### 在新窗口中打开当前笔记
 
-Open current note in new window by using the right-click menu or pressing `Alt+Shift+W`
+使用右键菜单或按`Alt+Shift+W`在新窗口中打开当前笔记
 
-#### Open the note corresponding to the link
+#### 在新窗口中打开链接对应的笔记
 
-`Double click link text` to open the corresponding note in a new window
+`双击链接文本`在新窗口中打开对应的笔记
 
-### In the "links panel / graph panel" attached to the editor:
+### 在附加到编辑器的“链接面板/关系图面板”中:
 
-`Left click link` to open the corresponding note in the current editor window
+`左键单击链接`在当前编辑器窗口中打开对应的笔记
 
-`Right click link` to open the corresponding note in a new editor window
+`右键单击链接`在新的编辑器窗口中打开对应的笔记
 
-`Middle click link` to open the corresponding note in the browser (unsupported in graph panel)
+`中键（滚轮）单击链接`在浏览器界面中打开对应的笔记（在关系图面板中不支持）
 
-### In the reviewer / previewer / global graph:
+### 在“复习界面/预览界面/全局关系图”中:
 
-`Left click link` to open the corresponding note in a previewer window
+`左键单击链接`在预览器窗口中打开对应的笔记
 
-`Right click link` to open the corresponding note in an editor window
+`右键单击链接`在编辑器窗口中打开对应的笔记
 
-### Global relationship graph
+### 全局关系图
 
-Entrance: `Menu -> Anki Note Linker -> Global Relationship Graph`
+入口: `菜单 -> Anki Note Linker -> 全局关系图`
 
-Please set the video driver in Anki preference to an option other than `Software`, as it can significantly decrease graphic performance
+请将Anki设置中的显示驱动设置为`Software`以外的选项，因为它会显著降低图形性能
 
-### Customize shortcut keys
+### 自定义快捷键
 
-You can customize the shortcut keys according to your preferences in add-on configuration
+您可以根据自己的喜好在插件配置中自定义快捷键
 
-If there is no response when using the shortcut key, it may be due to a shortcut key conflict. Please try changing the shortcut key
+如果使用快捷键时没有响应，则可能是由于快捷键冲突，请尝试更改快捷键
 
 ---
-## How to display note links properly without this add-on (such as on AnkiDroid, AnkiWeb, or AnkiMobile clients)
+## 如何在没有此插件的情况下正确显示笔记（例如在AnkiDroid、AnkiWeb或AnkiMobile中）
 
-This add-on automatically renders note links as corresponding content on the desktop version of Anki. Without the add-on, the links will not be rendered properly, affecting use on mobile devices. However, you can still regain some functionality.
+此插件会自动将笔记链接呈现为桌面版Anki上的相应内容。如果没有此插件，链接将无法正确呈现，从而影响在移动设备上的使用。但是，您仍然可以恢复一些功能。
 
-If you have already generated note links and need to use them without the add-on, you can follow the steps below to get links working:
+如果您已经生成了笔记链接，并且需要在没有此插件的情况下使用，则可以按以下步骤操作：
 
-1. In the card template, add a `class` attribute `"linkRender"` to each note field on the front and back sides. You can also customize the attribute's name.
+1. 在卡片模版中，给正面和背面的每个笔记字段加上`class`属性`"linkRender"`，您也可以自定义它的名称
 
 ```html
-<div class="linkRender">{{Front}}</div>
-<div class="linkRender">{{Back}}</div>
-<!-- If the field already has a class attribute, 
-you can use a space to separate the new attribute from the original one -->
-<div class="otherClassName linkRender">{{Addition}}</div>
+<div class="linkRender">{{问题}}</div>
+<div class="linkRender">{{答案}}</div>
+<!-- 如果字段已经拥有了class属性，可以使用空格将新的属性与原来的属性隔开 -->
+<div class="otherClassName linkRender">{{补充}}</div>
 ```
-2. Copy the following code to the end of the card template on both sides. Rename the `linkRender` attribute in the code if you changed it. Set the `disableLinks` variable to `true` if you only want the text to render (removes the "[|nid]" marker).
+2. 将以下代码复制到卡片模版中，如果您更改了代码中的`"linkRender"`属性，请同时修改以下代码中对应的文本。如果你想只渲染文本（移除 "[|nid]" 标记）而不需要链接跳转功能，请将`disableLinks`变量设置为`true`
 
 ```html
 <script>
-    var disableLinks = false; // Change to true if you want to disable all link rendering for clients without add-on
+    var disableLinks = false; // 改为true将禁用链接的跳转功能
     if (!window.AnkiNoteLinkerIsActive) {
         const renderLinks = _ => {
             document.querySelectorAll('.linkRender').forEach(element => { // You can rename "linkRender" on this line, but leave the "." in front
@@ -137,16 +138,16 @@ you can use a space to separate the new attribute from the original one -->
 </script>
 ```
 
-3. Save the card template and sync your deck to AnkiWeb.
+3. 保存卡片模板，并将您的卡片组同步到AnkiWeb
 
-After completing these operations, Anki will automatically display the correct content.
+完成这些操作后，Anki会自动呈现正确的链接内容
 
-If you click a link on an AnkiDroid or AnkiMobile client, it will attempt to display the corresponding note's flashcard in the card browser; if you click a link on AnkiWeb, it will open the AnkiWeb edit page for the corresponding note. If you changed the `disableLinks` variable to `true`, then the original content of the card will be displayed without any links.
+如果您在AnkiDroid或AnkiMobile客户端上点击一个链接，将会尝试在卡片浏览器中显示相应笔记的卡片；如果您在AnkiWeb上点击一个链接，它将打开相应笔记的AnkiWeb编辑页面；如果您将`disableLinks`变量更改为`true`，则仅显示原始卡片内容，没有链接功能
 
 ---
-This add-on is inspired by [Obsidian](https://obsidian.md/)
+本插件创作灵感来源于 [Obsidian](https://obsidian.md/)
 
-The following projects were used in this project:
+本项目中使用到了以下项目：
 
 - [pixijs](https://github.com/pixijs/pixijs)
 
@@ -156,7 +157,7 @@ The following projects were used in this project:
 
 - [Force graph](https://github.com/vasturiano/force-graph)
 
-The implementation of this add-on is inspired by the following add-ons:
+此插件的实现受到以下插件的启发：
 
 - [link Cards Notes and Preview them in extra window](https://ankiweb.net/shared/info/1423933177)
 
@@ -165,4 +166,4 @@ The implementation of this add-on is inspired by the following add-ons:
 - [Editor Live Preview](https://ankiweb.net/shared/info/1960039667)
 
 ---
-Add-on code：1077002392
+插件代码：1077002392
