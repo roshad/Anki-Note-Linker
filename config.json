@@ -17,6 +17,7 @@
   "shortcuts-insertLinkWithClipboardID": "Alt+Shift+V",
   "shortcuts-insertNewLink": "Alt+Shift+N",
   "shortcuts-insertLinkTemplate": "Alt+Shift+T",
+  "shortcuts-openLinkedNoteInPreviewerWithClick": "Ctrl",
   "globalGraph-defaultSearchText": "deck:current",
   "globalGraph-defaultHighlightFilter": "is:due",
   "globalGraph-defaultShowSingleNode": false,

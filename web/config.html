@@ -132,6 +132,9 @@
         <div><label class="shortcuts-openNoteInNewWindow"></label>
             <input id="shortcuts-openNoteInNewWindow" type="text">
         </div>
+        <div><label class="shortcuts-openLinkedNoteInPreviewerWithClick"></label>
+            <input id="shortcuts-openLinkedNoteInPreviewerWithClick" type="text" placeholder="Ctrl / Alt / Shift / Meta / None">
+        </div>
         <div><label class="shortcuts-insertLinkWithClipboardID"></label>
             <input id="shortcuts-insertLinkWithClipboardID" type="text">
         </div>
@@ -195,6 +198,7 @@
     document.getElementsByClassName('shortcuts-copyNoteID')[0].innerHTML = getTr('Copy current note ID') + ':&nbsp;'
     document.getElementsByClassName('shortcuts-copyNoteLink')[0].innerHTML = getTr('Copy current note link') + ':&nbsp;'
     document.getElementsByClassName('shortcuts-openNoteInNewWindow')[0].innerHTML = getTr('Open current note in new window') + ':&nbsp;'
+    document.getElementsByClassName('shortcuts-openLinkedNoteInPreviewerWithClick')[0].innerHTML = getTr('Open linked note in previewer (click modifier)') + ':&nbsp;'
     document.getElementsByClassName('shortcuts-insertLinkWithClipboardID')[0].innerHTML = getTr('Insert link with copied note ID') + ':&nbsp;'
     document.getElementsByClassName('shortcuts-insertNewLink')[0].innerHTML = getTr('Insert new link') + ':&nbsp;'
     document.getElementsByClassName('shortcuts-insertLinkTemplate')[0].innerHTML = getTr('Insert link template') + ':&nbsp;'
@@ -255,6 +259,7 @@
         document.getElementById('shortcuts-copyNoteID').value = config['shortcuts-copyNoteID']
         document.getElementById('shortcuts-copyNoteLink').value = config['shortcuts-copyNoteLink']
         document.getElementById('shortcuts-openNoteInNewWindow').value = config['shortcuts-openNoteInNewWindow']
+        document.getElementById('shortcuts-openLinkedNoteInPreviewerWithClick').value = config['shortcuts-openLinkedNoteInPreviewerWithClick']
         document.getElementById('shortcuts-insertLinkWithClipboardID').value = config['shortcuts-insertLinkWithClipboardID']
         document.getElementById('shortcuts-insertNewLink').value = config['shortcuts-insertNewLink']
         document.getElementById('shortcuts-insertLinkTemplate').value = config['shortcuts-insertLinkTemplate']
@@ -296,6 +301,7 @@
         userConfig['shortcuts-copyNoteID'] = document.getElementById('shortcuts-copyNoteID').value
         userConfig['shortcuts-copyNoteLink'] = document.getElementById('shortcuts-copyNoteLink').value
         userConfig['shortcuts-openNoteInNewWindow'] = document.getElementById('shortcuts-openNoteInNewWindow').value
+        userConfig['shortcuts-openLinkedNoteInPreviewerWithClick'] = document.getElementById('shortcuts-openLinkedNoteInPreviewerWithClick').value
         userConfig['shortcuts-insertLinkWithClipboardID'] = document.getElementById('shortcuts-insertLinkWithClipboardID').value
         userConfig['shortcuts-insertNewLink'] = document.getElementById('shortcuts-insertNewLink').value
         userConfig['shortcuts-insertLinkTemplate'] = document.getElementById('shortcuts-insertLinkTemplate').value

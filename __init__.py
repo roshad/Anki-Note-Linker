@@ -181,6 +181,7 @@ class AnkiNoteLinker(object):
         mw.reviewer.linksPage.set_bridge_command(lambda s: s, mw.reviewer.linksPage)
         mw.reviewer.linksPage.stdHtml(
             f'<script>const ankiContext = "REVIEWER"</script>'
+            f'<script>const openPreviewWithClickShortcut = {json.dumps(config["shortcuts-openLinkedNoteInPreviewerWithClick"])}</script>'
             f'<script src="{getWebFileLink("js/translation.js")}"></script>'
             f'<script>const ankiLanguage = "{anki.lang.current_lang}"</script>'
             f'<link rel="stylesheet" href="{getWebFileLink("katex.css")}">'
@@ -297,6 +298,7 @@ class AnkiNoteLinker(object):
         context = 'BROWSER' if editor.editorMode == EditorMode.BROWSER else 'EDIT_CURRENT' if editor.editorMode == EditorMode.EDIT_CURRENT else 'ADD_CARDS'
         editor.linksPage.stdHtml(
             f'<script>const ankiContext = "{context}"</script>'
+            f'<script>const openPreviewWithClickShortcut = {json.dumps(config["shortcuts-openLinkedNoteInPreviewerWithClick"])}</script>'
             f'<script src="{getWebFileLink("js/translation.js")}"></script>'
             f'<script>const ankiLanguage = "{anki.lang.current_lang}"</script>'
             f'<link rel="stylesheet" href="{getWebFileLink("katex.css")}">'
@@ -314,6 +316,7 @@ class AnkiNoteLinker(object):
         context = 'BROWSER' if editor.editorMode == EditorMode.BROWSER else 'EDIT_CURRENT' if editor.editorMode == EditorMode.EDIT_CURRENT else 'ADD_CARDS'
         editor.graphPage.stdHtml(
             f'<script>const ankiContext = "{context}"</script>'
+            f'<script>const openPreviewWithClickShortcut = {json.dumps(config["shortcuts-openLinkedNoteInPreviewerWithClick"])}</script>'
             f'<script>const ankiLanguage = "{anki.lang.current_lang}"</script>'
             f'<link rel="stylesheet" href="{getWebFileLink("katex.css")}">'
             f'<script defer src="{getWebFileLink("js/katex.js")}"></script>'
@@ -328,6 +331,7 @@ class AnkiNoteLinker(object):
         context = 'BROWSER' if e.editorMode == EditorMode.BROWSER else 'EDIT_CURRENT' if e.editorMode == EditorMode.EDIT_CURRENT else 'ADD_CARDS'
         e.graphPage.stdHtml(
             f'<script>const ankiContext = "{context}"</script>'
+            f'<script>const openPreviewWithClickShortcut = {json.dumps(config["shortcuts-openLinkedNoteInPreviewerWithClick"])}</script>'
             f'<script>const ankiLanguage = "{anki.lang.current_lang}"</script>'
             f'<link rel="stylesheet" href="{getWebFileLink("katex.css")}">'
             f'<script defer src="{getWebFileLink("js/katex.js")}"></script>'

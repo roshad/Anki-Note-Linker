@@ -163,6 +163,44 @@ Author Wang Rui <https://github.com/gugutu>
     const toClientX = canvasX => canvasX * app.stage.scale.x + app.stage.x
     const toClientY = canvasY => canvasY * app.stage.scale.x + app.stage.y
     const toClientLength = canvasLength => canvasLength * app.stage.scale.x
+
+    function getPreviewShortcutSpec() {
+        const shortcutText = typeof openPreviewWithClickShortcut === 'string' ? openPreviewWithClickShortcut : 'Ctrl'
+        const tokens = shortcutText.split('+').map(it => it.trim().toLowerCase()).filter(it => it.length > 0)
+        const spec = {ctrl: false, shift: false, alt: false, meta: false}
+        let hasModifier = false
+        for (const token of tokens) {
+            if (token === 'none') {
+                return spec
+            } else if (token === 'ctrl' || token === 'control') {
+                spec.ctrl = true
+                hasModifier = true
+            } else if (token === 'shift') {
+                spec.shift = true
+                hasModifier = true
+            } else if (token === 'alt') {
+                spec.alt = true
+                hasModifier = true
+            } else if (token === 'meta' || token === 'cmd' || token === 'command') {
+                spec.meta = true
+                hasModifier = true
+            }
+        }
+        if (!hasModifier) {
+            spec.ctrl = true
+        }
+        return spec
+    }
+
+    const previewShortcutSpec = getPreviewShortcutSpec()
+    const shouldOpenInPreview = event => {
+        const e = event && event.nativeEvent ? event.nativeEvent : event
+        return !!e && !!e.ctrlKey === previewShortcutSpec.ctrl &&
+            !!e.shiftKey === previewShortcutSpec.shift &&
+            !!e.altKey === previewShortcutSpec.alt &&
+            !!e.metaKey === previewShortcutSpec.meta
+    }
+
     const linkTools = {
         shouldRenderLink: (link, radius) => boundary.contains(link.source.x, link.source.y, radius) || boundary.contains(link.target.x, link.target.y, radius),
         calculateDistance: (x1, y1, x2, y2) => Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2)),
@@ -378,8 +416,8 @@ Author Wang Rui <https://github.com/gugutu>
                     return
                 }
                 if (node.type !== 'me') {
-                    if (node.type === 'tag') {
-                        pycmd('AnkiNoteLinker-tagSearch' + node.id)
+                    if (shouldOpenInPreview(event)) {
+                        pycmd('AnkiNoteLinker-openNoteInPreviewer' + node.id)
                         return
                     }
                     if (ankiContext === 'BROWSER')

@@ -36,6 +36,42 @@
     let init = false
     const largeSize = false//gData.links.length + gData.nodes.length > 10000
     const elem = document.getElementById('graph');
+
+    function getPreviewShortcutSpec() {
+        const shortcutText = typeof openPreviewWithClickShortcut === 'string' ? openPreviewWithClickShortcut : 'Ctrl'
+        const tokens = shortcutText.split('+').map(it => it.trim().toLowerCase()).filter(it => it.length > 0)
+        const spec = {ctrl: false, shift: false, alt: false, meta: false}
+        let hasModifier = false
+        for (const token of tokens) {
+            if (token === 'none') {
+                return spec
+            } else if (token === 'ctrl' || token === 'control') {
+                spec.ctrl = true
+                hasModifier = true
+            } else if (token === 'shift') {
+                spec.shift = true
+                hasModifier = true
+            } else if (token === 'alt') {
+                spec.alt = true
+                hasModifier = true
+            } else if (token === 'meta' || token === 'cmd' || token === 'command') {
+                spec.meta = true
+                hasModifier = true
+            }
+        }
+        if (!hasModifier) {
+            spec.ctrl = true
+        }
+        return spec
+    }
+
+    const previewShortcutSpec = getPreviewShortcutSpec()
+    const shouldOpenInPreview = event =>
+        !!event && !!event.ctrlKey === previewShortcutSpec.ctrl &&
+        !!event.shiftKey === previewShortcutSpec.shift &&
+        !!event.altKey === previewShortcutSpec.alt &&
+        !!event.metaKey === previewShortcutSpec.meta
+
     const graph = ForceGraph()(elem)
         .nodeCanvasObject((node, ctx, globalScale) => {
             const radius = node.type === 'me' ? 10 : 8
@@ -119,10 +155,14 @@
         .d3Force('center', null)
         //.d3Force("collide", d3.forceCollide().radius(n => n.size + 1).iterations(3))
         .d3Force("charge", d3.forceManyBody().strength(-300))
-        .onNodeClick(node => {
+        .onNodeClick((node, event) => {
             if (node.type !== 'me') {
                 if (node.type === 'tag') {
                     pycmd('AnkiNoteLinker-tagSearch' + node.id)
+                    return
+                }
+                if (shouldOpenInPreview(event)) {
+                    pycmd('AnkiNoteLinker-openNoteInPreviewer' + node.id)
                     return
                 }
                 if (ankiContext === 'BROWSER')

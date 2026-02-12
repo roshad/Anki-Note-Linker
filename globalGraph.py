@@ -50,6 +50,7 @@ class GlobalGraph(QWidget):
         self.web.stdHtml(
             f'<link rel="stylesheet" href="{getWebFileLink("katex.css")}">'
             f'<script>const ankiContext = "GLOBAL_GRAPH"</script>'
+            f'<script>const openPreviewWithClickShortcut = {json.dumps(config["shortcuts-openLinkedNoteInPreviewerWithClick"])}</script>'
             f'<script>const ankiLanguage = "{anki.lang.current_lang}"</script>'
             f'<script defer src="{getWebFileLink("js/katex.js")}"></script>'
             f'<script defer src="{getWebFileLink("js/katex-mhchem.js")}"></script>'
@@ -88,6 +89,7 @@ class GlobalGraph(QWidget):
         self.web.stdHtml(
             f'<link rel="stylesheet" href="{getWebFileLink("katex.css")}">'
             f'<script>const ankiContext = "GLOBAL_GRAPH"</script>'
+            f'<script>const openPreviewWithClickShortcut = {json.dumps(config["shortcuts-openLinkedNoteInPreviewerWithClick"])}</script>'
             f'<script>const ankiLanguage = "{anki.lang.current_lang}"</script>'
             f'<script defer src="{getWebFileLink("js/katex.js")}"></script>'
             f'<script defer src="{getWebFileLink("js/katex-mhchem.js")}"></script>'

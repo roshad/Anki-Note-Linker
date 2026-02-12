@@ -35,6 +35,7 @@ defaultConfig = {
     "shortcuts-insertLinkWithClipboardID": "Alt+Shift+V",
     "shortcuts-insertNewLink": "Alt+Shift+N",
     "shortcuts-insertLinkTemplate": "Alt+Shift+T",
+    "shortcuts-openLinkedNoteInPreviewerWithClick": "Ctrl",
 
     "globalGraph-defaultSearchText": "deck:current",
     "globalGraph-defaultHighlightFilter": "is:due",
@@ -61,6 +62,9 @@ if "shortcuts" in configTemp:
         configTemp["shortcuts"].get("insertNewLink", defaultConfig["shortcuts-insertNewLink"]))
     configTemp["shortcuts-insertLinkTemplate"] = (
         configTemp["shortcuts"].get("insertLinkTemplate", defaultConfig["shortcuts-insertLinkTemplate"]))
+    configTemp["shortcuts-openLinkedNoteInPreviewerWithClick"] = (
+        configTemp["shortcuts"].get("openLinkedNoteInPreviewerWithClick",
+                                    defaultConfig["shortcuts-openLinkedNoteInPreviewerWithClick"]))
     del configTemp["shortcuts"]
 
 if "globalGraph" in configTemp:
@@ -87,6 +91,10 @@ if "globalGraph" in configTemp:
 if "Use the previewer of hjp-linkmaster if it is installed" in configTemp:
     configTemp["useHjpPreviewer"] = configTemp["Use the previewer of hjp-linkmaster if it is installed"]
     del configTemp["Use the previewer of hjp-linkmaster if it is installed"]
+
+for key, value in defaultConfig.items():
+    if key not in configTemp:
+        configTemp[key] = value
 
 mw.addonManager.writeConfig(__name__, configTemp)
 config = mw.addonManager.getConfig(__name__)
